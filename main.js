@@ -37,15 +37,26 @@ function calculateTotalTicketPrice(){
 function bookNow(){
 
     if (parseInt(document.getElementById("total").innerText)>=100){
-        document.getElementById("booking-form").remove();
-        document.querySelector("h1").innerText="Congratulation";
-        document.querySelector(".booking-content p").innerHTML="Your Ticket is book successfully. Ticket details are:";
-        // Adding new html element
-        const newElement = document.createElement('p');
-        newElement.innerHTML='<br><h3>Total price: '+ document.getElementById("total").innerText+'</h3><br><h3>Tax: '+ document.getElementById("tax").innerText+'</h3>';
-        var a = document.querySelector(".booking-content").lastElementChild;
-        a.appendChild(newElement);
         
+        // Disable all input fields after booking
+        const allInputFields =document.querySelectorAll("input")
+        allInputFields.forEach((e)=>{
+            e.setAttribute("disabled", "true");
+        })
+
+        // Disable plus-minus btn
+        const allPlusMinusButton =document.querySelectorAll(".plus-minus-btn")
+        allPlusMinusButton.forEach((e)=>{
+            e.remove();
+        })
+
+        document.getElementById("book-now").remove();
+
+        // Congratulation message
+        const message = document.querySelector("h1");
+        message.style.background="green";
+        message.innerHTML="<span style='padding-left:10px;'>Congratulation</span>";
+        document.querySelector(".booking-content p").innerHTML="<h3>Your Ticket is book successfully and your receipt is here. Please, download and print it.</h3>";       
     }
     else{
         // styling DOM element
