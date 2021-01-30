@@ -3,7 +3,7 @@
 // Code: https://github.com/hasibcsepstubd/Air-Tickets/
 
 
-// Total ticket price calculation function ==============================================================
+// Total ticket price calculation function =======================================================
 function calculateTotalTicketPrice(){
     
     // Variable declaration
@@ -33,6 +33,23 @@ function calculateTotalTicketPrice(){
 }
 
 
+// Input Validation style=====================================================================
+function invalidInputStyle(isEnable){
+    
+    if(isEnable==true){
+        document.getElementById("input-first-class-tickets").style.border="revert";
+        document.getElementById("input-first-class-tickets").style.borderColor="red";
+        document.getElementById("input-economy-class-tickets").style.border="revert";
+        document.getElementById("input-economy-class-tickets").style.borderColor="red";
+    }
+    else{
+        document.getElementById("input-first-class-tickets").style.border="none";
+        document.getElementById("input-economy-class-tickets").style.border="none";
+    }
+    
+    
+}
+
 // Booking now function =======================================================================
 function bookNow(){
 
@@ -60,12 +77,8 @@ function bookNow(){
     }
     else{
         // styling DOM element
-        document.getElementById("input-first-class-tickets").style.border="revert";
-        document.getElementById("input-first-class-tickets").style.borderColor="red";
-        document.getElementById("input-economy-class-tickets").style.border="revert";
-        document.getElementById("input-economy-class-tickets").style.borderColor="red";
-
         alert("Your are not book any ticket. Please try again. Thanks");
+        invalidInputStyle(true);
     }
     
 }
@@ -76,32 +89,28 @@ function bookNow(){
 // Add first class ticket booking event listener--------------------------------------
 document.getElementById('add-first-class-ticket').addEventListener("click",function(){
     document.getElementById('input-first-class-tickets').stepUp(1) ;
-    document.getElementById("input-first-class-tickets").style.border="none";
-    document.getElementById("input-economy-class-tickets").style.border="none";
+    invalidInputStyle(false);
     calculateTotalTicketPrice();
 });
 
 // Remove first class ticket booking event listener-------------------------------------
 document.getElementById('remove-first-class-ticket').addEventListener("click",function(){
     document.getElementById('input-first-class-tickets').stepDown(1) ;
-    document.getElementById("input-first-class-tickets").style.border="none";
-    document.getElementById("input-economy-class-tickets").style.border="none";
+    invalidInputStyle(false);
     calculateTotalTicketPrice();
 });
 
 // Add economy class ticket booking event listener-------------------------------------
 document.getElementById('add-economy-class-ticket').addEventListener("click",function(){
     document.getElementById('input-economy-class-tickets').stepUp(1) ;
-    document.getElementById("input-first-class-tickets").style.border="none";
-    document.getElementById("input-economy-class-tickets").style.border="none";
+    invalidInputStyle(false);
     calculateTotalTicketPrice();
 });
 
 // Remove economy class ticket booking event listener-------------------------------------
 document.getElementById('remove-economy-class-ticket').addEventListener("click",function(){
     document.getElementById('input-economy-class-tickets').stepDown(1) ;
-    document.getElementById("input-first-class-tickets").style.border="none";
-    document.getElementById("input-economy-class-tickets").style.border="none";
+    invalidInputStyle(false);
     calculateTotalTicketPrice();
 });
 
