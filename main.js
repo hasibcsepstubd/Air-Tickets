@@ -7,9 +7,9 @@
 function calculateTotalTicketPrice(){
     
     // Variable declaration
-    var numberOfFirstClassTicket, numberOfEconomyClassTicket, 
-        priceOfFirstClassTicket =150, priceOfEconomyClassTicket =100,
-        totalPriceOfTotalFirstClassTicket =0,  totalPriceOfTotalEconomyClassTicket=0,
+    var numberOfFirstClassTicket=0, numberOfEconomyClassTicket=0, 
+        priceOfPerFirstClassTicket =150, priceOfPerEconomyClassTicket =100,
+        totalPriceOfFirstClassTicket =0,  totalPriceOfEconomyClassTicket=0,
         subtotal = 0, tax = 0, total = 0;
 
     // Get input from DOM
@@ -17,11 +17,11 @@ function calculateTotalTicketPrice(){
     numberOfEconomyClassTicket = parseInt(document.getElementById('input-economy-class-tickets').value);
     
     // Calculate First and Economy class ticket value
-    totalPriceOfTotalFirstClassTicket = numberOfFirstClassTicket*priceOfFirstClassTicket;
-    totalPriceOfTotalEconomyClassTicket = numberOfEconomyClassTicket*priceOfEconomyClassTicket; 
+    totalPriceOfFirstClassTicket = numberOfFirstClassTicket*priceOfPerFirstClassTicket;
+    totalPriceOfEconomyClassTicket = numberOfEconomyClassTicket*priceOfPerEconomyClassTicket; 
     
     // Calculate subtotal, tax and total ticket price 
-    subtotal =  totalPriceOfTotalFirstClassTicket + totalPriceOfTotalEconomyClassTicket;
+    subtotal =  totalPriceOfFirstClassTicket + totalPriceOfEconomyClassTicket;
     tax = subtotal*(10/100);
     total = subtotal + tax;
 
@@ -33,7 +33,7 @@ function calculateTotalTicketPrice(){
 }
 
 
-// Input Validation style=====================================================================
+// Input Validation style=========================================================================
 function invalidInputStyle(isEnable){
     
     if(isEnable==true){
@@ -61,22 +61,22 @@ function bookNow(){
             e.setAttribute("disabled", "true");
         })
 
-        // Disable plus-minus btn
+        // Remove plus-minus btn
         const allPlusMinusButton =document.querySelectorAll(".plus-minus-btn")
         allPlusMinusButton.forEach((e)=>{
             e.remove();
         })
-
+        // Remove Book Now Button
         document.getElementById("book-now").remove();
 
         // Congratulation message
         const message = document.querySelector("h1");
         message.style.background="green";
         message.innerHTML="<span style='padding-left:10px;'>Congratulation</span>";
-        document.querySelector(".booking-content p").innerHTML="<h3>Your Ticket is book successfully and your receipt is here. Please, download and print it.</h3>";       
+        document.querySelector(".booking-content p").innerHTML="<h3>Your Ticket is book successfully. Please, download the receipt and print it.</h3>";       
     }
     else{
-        // styling DOM element
+        
         alert("Your are not book any ticket. Please try again. Thanks");
         invalidInputStyle(true);
     }
